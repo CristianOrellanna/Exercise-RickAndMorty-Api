@@ -6,4 +6,4 @@ Expose an endpoint that allows a request to be made with the ID of a character i
 
 ## ✅ Solution
 [![1.png](https://i.postimg.cc/YCsNGQ0t/1.png)](https://postimg.cc/CRbn9Bb2)
-
+[![2.png](https://i.postimg.cc/9FGFq2f0/2.png)](https://postimg.cc/qzvd99yH)
