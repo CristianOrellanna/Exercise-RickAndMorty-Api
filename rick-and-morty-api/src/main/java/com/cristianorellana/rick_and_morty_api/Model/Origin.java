@@ -10,10 +10,10 @@ import java.util.List;
 @Setter
 public class Origin {
 
-    public String name;
-    public String url;
-    public String dimension;
-    public List<String> residents = new ArrayList<>();
+    private String name;
+    private String url;
+    private String dimension;
+    private List<String> residents = new ArrayList<>();
 
 }
 

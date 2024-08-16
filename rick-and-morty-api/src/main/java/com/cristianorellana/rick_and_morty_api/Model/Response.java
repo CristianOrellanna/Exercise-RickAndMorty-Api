@@ -1,28 +1,20 @@
 package com.cristianorellana.rick_and_morty_api.Model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
-public class Character {
+@AllArgsConstructor
+public class Response {
 
     private int id;
     private String name;
     private String status;
     private String species;
     private String type;
-    private List<String> episode;
+    private int episode_count;
     private Origin origin;
-
-    public int getEpisodeCount(){
-        if (episode != null){
-            return episode.size();
-        }else {
-            return 0;
-        }
-    }
 
 }

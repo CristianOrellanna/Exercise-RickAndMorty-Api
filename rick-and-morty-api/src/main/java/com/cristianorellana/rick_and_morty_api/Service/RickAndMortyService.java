@@ -12,14 +12,13 @@ public class RickAndMortyService {
     @Autowired
     private RestTemplate restTemplate;
 
-    public Character getCharacterById(int id){
+    public Character getCharacterById(int id) {
         String url = "https://rickandmortyapi.com/api/character/" + id;
         return restTemplate.getForObject(url, Character.class);
     }
 
-    public Origin getLocationById(int id){
+    public Origin getLocationById(int id) {
         String url = "https://rickandmortyapi.com/api/location/" + id;
         return restTemplate.getForObject(url, Origin.class);
     }
-
 }

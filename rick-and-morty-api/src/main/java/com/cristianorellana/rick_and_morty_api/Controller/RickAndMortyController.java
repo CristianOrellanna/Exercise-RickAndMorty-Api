@@ -2,6 +2,7 @@ package com.cristianorellana.rick_and_morty_api.Controller;
 
 import com.cristianorellana.rick_and_morty_api.Model.Character;
 import com.cristianorellana.rick_and_morty_api.Model.Origin;
+import com.cristianorellana.rick_and_morty_api.Model.Response;
 import com.cristianorellana.rick_and_morty_api.Service.RickAndMortyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,22 +19,31 @@ public class RickAndMortyController {
     private RickAndMortyService rickAndMortyService;
 
     @GetMapping("/character/{id}")
-    public ResponseEntity<Character> getCharacterById(@PathVariable int id) {
+    public ResponseEntity<Response> getCharacterById(@PathVariable int id) {
         Character character = rickAndMortyService.getCharacterById(id);
-        if (character != null){
-            return ResponseEntity.ok(character);
-        }else{
+        if (character == null) {
             return ResponseEntity.notFound().build();
         }
+        // Obtener el origen
+        Origin origin = rickAndMortyService.getLocationById(extractIdFromUrl(character.getOrigin().getUrl()));
+        Response response = new Response(
+                character.getId(),
+                character.getName(),
+                character.getStatus(),
+                character.getSpecies(),
+                character.getType(),
+                character.getEpisodeCount(),
+                origin
+        );
+        return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/location/{id}")
-    public ResponseEntity<Origin> getLocationById(@PathVariable int id) {
-        Origin origin = rickAndMortyService.getLocationById(id);
-        if (origin != null){
-            return ResponseEntity.ok(origin);
-        }else{
-            return ResponseEntity.notFound().build();
+    private int extractIdFromUrl(String url) {
+        try {
+            String[] parts = url.split("/");
+            return Integer.parseInt(parts[parts.length - 1]);
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            return -1;
         }
     }
 }
