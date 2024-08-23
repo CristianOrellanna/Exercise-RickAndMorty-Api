@@ -1,4 +1,4 @@
-package com.cristianorellana.rick_and_morty_api;
+package com.cristianorellana.rick_and_morty_api.Configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
