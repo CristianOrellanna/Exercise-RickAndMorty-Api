@@ -16,13 +16,13 @@ public class RickAndMortyService {
     @Value("${rickAndMorty.api.character}")
     private String apiCharacterUrl;
 
-    @Value("${rickAndMorty.api.location}")
-    private String apiLocationUrl;
-
     public Character getCharacterById(int id) {
         String url = apiCharacterUrl + id;
         return restTemplate.getForObject(url, Character.class);
     }
+
+    @Value("${rickAndMorty.api.location}")
+    private String apiLocationUrl;
 
     public Origin getLocationById(int id) {
         String url = apiLocationUrl + id;
